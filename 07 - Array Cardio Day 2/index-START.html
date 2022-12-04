@@ -26,16 +26,142 @@
 
     // Some and Every Checks
     // Array.prototype.some() // is at least one person 19 or older?
-    // Array.prototype.every() // is everyone 19 or older?
+    const isAdult = people.some(function(person){
+      const currentYear = (new Date()).getFullYear();
+      if(currentYear - person.year >= 19){
+        return true;
+      }
+    });
+    console.log({isAdult});
 
+    const isAdultShort = people.some(person => 
+    (new Date()).getFullYear() - person.year >=19
+    );
+
+    console.log({isAdultShort});
+    // Array.prototype.every() // is everyone 19 or older?
+    const allAdult = people.every(function(person){
+      const currentYear = (new Date()).getFullYear();
+      if(currentYear - person.year >= 19){
+        return true;
+      }
+    });
+    console.log({allAdult});
+    const allAdultShort = people.every(person => 
+    (new Date()).getFullYear() - person.year >=19
+    );
+    console.log({allAdultShort});
     // Array.prototype.find()
     // Find is like filter, but instead returns just the one you are looking for
     // find the comment with the ID of 823423
+    const comment = comments.find(com => com.id === 823423);
+    console.log(comment);
 
     // Array.prototype.findIndex()
     // Find the comment with this ID
     // delete the comment with the ID of 823423
+    const index = comments.findIndex(ind => ind.id === 823423);
+    console.log(index);
 
+    //comments.splice(index, 1);
+
+    const newComments =[
+      ...comments.slice(0, index),
+      ...comments.slice(index+1)
+    ]
+    console.table(newComments);
+
+    a='Racecar!';
+    var splChars = "*|,\":<>[]{}`\';()@&$#%!";
+    for (var i = 0; i < a.length; i++) {
+    if (splChars.includes(a[i])){
+    console.log ("Illegal characters detected!"+a[i]+" at "+i); 
+
+      }
+
+    function palindromes(arr) {
+    const arr1 = arr.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+    let j=arr1.length-1;
+    for(let i=0; i<arr1.length; i++){
+        if(arr1[i] !== arr1[j]){
+            return false;
+        }
+        else if(j <= i){
+            return true;
+        }else{
+          j--;
+        }
+    }
+};
+  }
+
+  console.log(palindromes('A car, a man, a maraca.'));
+
+
+  function fibonacci(num) {
+    arr=[];
+    for(let i=0; i<num; i++){
+        if(i<=1){
+            arr.push(1);
+        }else{
+            let j=i-1; let k=i-2;
+            let total = arr[k]+arr[j];
+            arr.push(total);
+        }
+    }
+    return arr[arr.length-1];
+};
+console.log(fibonacci(3));
+
+const books = [
+      {
+        title: 'Book',
+        author: 'Name'
+      },
+      {
+        title: 'Book2',
+        author: 'Name2'
+      }
+    ]
+
+    function getTheTitles(arr) {
+      return arr.map(book => book.title);
+    };
+
+    console.table(getTheTitles(books));
+
+    const oldest = [
+      {
+        name: "Carly",
+        yearOfBirth: 1942
+      },
+      {
+        name: "Ray",
+        yearOfBirth: 1962,
+        yearOfDeath: 2011,
+      },
+      {
+        name: "Jane",
+        yearOfBirth: 1912,
+        yearOfDeath: 1941,
+      },
+    ]
+
+     function findTheOldest(arr) {
+    let oldest = 0; let index=0;
+    for(i in arr){
+        if(arr[i].yearOfDeath == undefined){
+          arr[i].yearofDeath = (new Date()).getFullYear();
+        }
+        if(oldest < arr[i].yearOfDeath - arr[i].yearOfBirth){
+            oldest = arr[i].yearOfDeath - arr[i].yearOfBirth;
+            index=i;
+        }
+    }
+    return arr[index];
+  };
+
+  console.table(findTheOldest(oldest));
   </script>
 </body>
 </html>
